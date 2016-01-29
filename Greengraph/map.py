@@ -34,7 +34,7 @@ class Map(object):
 	# instead of 'self' in function parameters lecture notes have 'data'.
 	def show_green(self, threshold = 1.1):
        	    green = self.green(threshold)
-       	    out = green[:,:,np.newaxis]*array([0,1,0])[np.newaxis, np.newaxis, :]
+       	    out = green[:,:,np.newaxis]*np.array([0,1,0])[np.newaxis, np.newaxis, :]
        	    buffer = StringIO()
        	    result = img.imsave(buffer, out, format = 'png')
        	    return buffer.getvalue()
