@@ -33,8 +33,7 @@ class Map(object):
 	
     def green(self, threshold):
         """
-        Given an argument threshold, the function takes the array 'self.pixels' 
-        points to and returns an array of True/False values depending of 
+        Take the array to which 'self.pixels' points to.  Use the 'threshold' and return an array of True/False values depending on 
         whether each pixel is green or not. 
         """
 	greener_than_red = self.pixels[:,:,1] > threshold*self.pixels[:,:,0]
@@ -44,7 +43,7 @@ class Map(object):
 	
     def count_green(self, threshold = 1.1):
         """
-        Takes as argument a 'threshold' and returns the number of green pixels in the image.
+        Take as argument a 'threshold' and return the number of green pixels in the image.
         """
         return np.sum(self.green(threshold))
 	
