@@ -40,7 +40,7 @@ class Map(object):
 	greener_than_red = self.pixels[:,:,1] > threshold*self.pixels[:,:,0]
 	greener_than_blue = self.pixels[:,:,1] > threshold*self.pixels[:,:,2]
 	green = np.logical_and(greener_than_red, greener_than_blue)
-        return green
+        return green # 400x400 array of true/false values. 
 	
     def count_green(self, threshold = 1.1):
         """
@@ -49,7 +49,10 @@ class Map(object):
         return np.sum(self.green(threshold))
 	
     def show_green(self, threshold = 1.1):
-        green = self.green(threshold)
+        """
+        
+        """
+        green = self.green(threshold) # return an array of true/false 
         out = green[:,:,np.newaxis]*np.array([0,1,0])[np.newaxis, np.newaxis, :]
         buffer = StringIO()
         result = img.imsave(buffer, out, format = 'png')
