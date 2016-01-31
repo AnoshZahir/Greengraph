@@ -1,0 +1,33 @@
+test_geolocate:
+  - location: 'London'
+    location_lat: 51.5073509
+    location_long: -0.1277583
+  - location: 'Cambridge'
+    location_lat: 52.205337
+    location_long: 0.121817
+  - location: 'Glassgow'
+    location_lat: 55.864237
+    location_long: -4.251806
+  - location: 'Paris'
+    location_lat: 48.856614
+    location_long: 2.3522219
+
+test_location_sequence:
+  - first_location: 'London'
+    second_location: 'Cambridge'
+    steps: 4
+    sequence_results: [[  5.15073509e+01,  -1.27758300e-01], [  5.17400129e+01,  -4.45665333e-02], [  5.19726750e+01,   3.86252333e-02], [  5.22053370e+01,   1.21817000e-01]]
+
+test_green_between:
+  - first_location = 'London'
+    first_location_latlong = [51.5073509, -0.1277583]
+    second_location = 'Cambridge'
+    second_location_latlong = [52.205337, 0.121817]
+    steps = 4
+    result = [106734, 152159, 158798, 159006]
+  - first_location = 'Glassgow'
+    first_location_latlong = [55.864237, -4.251806]
+    second_location = 'Paris'
+    second_location_latlong = [48.856614, 2.3522219]
+    steps = 4
+    result = [144966, 141847, 159272, 85629]
