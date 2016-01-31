@@ -1,5 +1,5 @@
-from graph import Greengraph
-from map import Map
+from ..graph import Greengraph
+from ..map import Map
 
 import geopy
 import requests
