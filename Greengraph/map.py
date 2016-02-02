@@ -6,14 +6,8 @@ import requests
 class Map(object):
     def __init__(self, lat, long, satellite = True, zoom = 10, size = (400, 400), sensor = False):
         """
-        Method to construct a URL.
-        The first part of the URL is in the 'base' variable in the method's body.
-        The rest of the URL is constructed from key/value pairs given by arguments
-        latitude, longitude, satellite, zoom, size and sensor.
-        
-        The Response object 'self.image' points to the data returned by 
-        response.get().content. The data is of the PNG image of the google maps location.
-        Finally, 'self.image points to the numpy array of the PNG image.
+        Construct a URL.
+        Then assign to self.pixels the numpy array of the PNG image of the googlemaps location in the URL.
         """
 	   
         base = "http://maps.googleapis.com/maps/api/staticmap?"
