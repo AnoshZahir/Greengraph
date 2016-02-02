@@ -1,0 +1,52 @@
+test_map:
+ - test: 'default'
+   url: 'http://maps.googleapis.com/maps/api/staticmap?'
+   latitude: 51.50
+   longitude: -0.12
+   params: {'sensor': 'false', 'zoom': 10, 'size': '400x400', 'center': '51.50,-0.12', 'style': 'feature:all|element:labels|visibility:off', 'maptype': 'satellite'}
+
+ - test: 'satellite_false'
+   url: 'http://maps.googleapis.com/maps/api/staticmap?'
+   latitude: 51.50
+   longitude: -0.12
+   params: {'sensor': 'false', 'zoom': 10, 'size': '400x400', 'center': '51.50,-0.12', 'style': 'feature:all|element:labels|visibility:off'}
+ 
+ - test: 'zoom'
+   url: 'http://maps.googleapis.com/maps/api/staticmap?'
+   latitude: 51.50
+   longitude: -0.12
+   params: {'sensor': 'false', 'zoom': 30, 'size': '400x400', 'center': '51.50,-0.12', 'style': 'feature:all|element:labels|visibility:off', 'maptype': 'satellite'}          
+ 
+ - test: 'size'
+   url: 'http://maps.googleapis.com/maps/api/staticmap?'
+   latitude: 51.50
+   longitude: -0.12
+   params: {'sensor': 'false', 'zoom': 10, 'size': '300x300', 'center': '51.50,-0.12', 'style': 'feature:all|element:labels|visibility:off', 'maptype': 'satellite'}
+
+ - test: 'sensor_true'
+   url: 'http://maps.googleapis.com/maps/api/staticmap?'
+   latitude: 51.50
+   longitude: -0.12
+   params: {'sensor': 'true', 'zoom': 10, 'size': '400x400', 'center': '51.50,-0.12', 'style': 'feature:all|element:labels|visibility:off', 'maptype': 'satellite'}
+   
+test_green:
+ - test: 'threshold = 1.5'
+   3d_input_matrix: [[[ 0.17254902,  0.26666668,  0.15686275], [ 0.14117648,  0.25098041,  0.1254902 ]], [[ 0.1254902 ,  0.23529412,  0.1254902 ], [ 0.1254902 ,  0.21960784,  0.10980392]]]
+   2d_output_matrix: [[True, True], [True, True]]
+
+ - test: 'threshold = 0.5'
+   3d_input_matrix: [[[ 0.17254902,  0.26666668,  0.15686275], [ 0.14117648,  0.25098041,  0.1254902 ]], [[ 0.1254902 ,  0.23529412,  0.1254902 ], [ 0.1254902 ,  0.21960784,  0.10980392]]]
+   2d_output_matrix: [[True, True], [True, True]]
+
+ - Test: 'threshold = -1'
+   3d_input_matrix: [[[ 0.17254902,  0.26666668,  0.15686275], [ 0.14117648,  0.25098041,  0.1254902 ]], [[ 0.1254902 ,  0.23529412,  0.1254902 ], [ 0.1254902 ,  0.21960784,  0.10980392]]]
+   2d_output_matrix: [[True, True], [True, True]]
+
+test_count_green:
+ - test: 1
+  input_values: [[True, True], [True, True]]
+  result: 4
+
+ - test: 2
+   input_values: [[True, False], [False, True]]
+   result: 2
