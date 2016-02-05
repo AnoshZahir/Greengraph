@@ -1,11 +1,6 @@
 from ..graph import Greengraph
 from ..map import Map
 
-import geopy # not used
-import requests # not used
-import numpy as np # not used
-from matplotlib import image as img # not used
-
 import os
 import yaml
 
@@ -20,12 +15,11 @@ def test_Greengraph():
     assert_equal(actual.start, 'London')
     assert_equal(actual.end, 'Cambridge')
 
-@patch.object(geopy.geocoders.GoogleV3, 'geocode')
-def test_geolocate(mock_geocode):
+@patch.object(Greengraph, 'geolocate')
+def test_geolocate(mock_geolocate):
     '''
-    Test that geolocate method returns the correct latitude and longitude values for given locations.
-    In the Class geopy.geocoders.GoogleV3, the method geocode is mocked.  The mocked values taken are from 
-    the test_geolocate subsection of graph_data.yaml file
+    Test that geolocate method returns the the output of geopy.geocoders.GoogleV3.geocode.
+    Since we are not testing the geocode method, it is mocked. The mocked values are taken from the test_geolocate subsection of graph_data.yaml file
     '''
     mygraph = Greengraph(0.0, 0.0)
     
@@ -38,8 +32,8 @@ def test_geolocate(mock_geocode):
         longitude = data.pop('location_long')
         
         expected_return = (latitude, longitude)
-        mock_geocode.return_value = expected_return
-        
+        mock_geolocate.return_value = expected_return
+
         actual_return = mygraph.geolocate(location)
         
         assert_equal(actual_return, expected_return)
@@ -60,12 +54,11 @@ def test_location_sequence():
         steps = data.pop('steps')
         expected_return = data.pop('expected_return')
         
-        actual_return = mygraph.location_sequence(first_location_coordinates, second_location_coordinates)
+        actual_return = mygraph.location_sequence(first_location_coordinates, second_location_coordinates, steps)
         for step_num in range(0, steps):
             for coordinate in range(0, 2):
                 assert_almost_equal(actual_return[step_num][coordinate], expected_return[step_num][coordinate])
 
-#decorators dont get applied top down, they get applied bottom up.
 @patch.object(Greengraph, 'location_sequence')
 @patch.object(Map, 'count_green')
 def test_green_between(mock_count_green, mock_location_sequence):
@@ -91,3 +84,4 @@ def test_green_between(mock_count_green, mock_location_sequence):
         expected_return = count_green_values
         actual_return = mygraph.count_green(steps) 
         assert_equal(actual_return, expected_return)
+
