@@ -10,7 +10,7 @@ setup(
     author_email = "anosh.zahir15@imperial.ac.uk",
     packages = find_packages(exclude = ['*test']),
     scripts = ['scripts/graph'],
-    install_requires = ['argparse', 'geopy', 'matplotlib', 'requests', 'numpy' ]
+    install_requires = ['argparse', 'geopy', 'matplotlib', 'requests', 'numpy', 'mock' ]
 )
 
  
