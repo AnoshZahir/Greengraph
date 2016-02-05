@@ -1,4 +1,0 @@
-#!usr/bin/env python
-
-from greengraph.command import process
-process()
