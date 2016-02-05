@@ -12,11 +12,12 @@ The package Greengraph contains two classes - Greengraph and Map.  The outcome i
 ### How to install:
 
 The package has been setup so that it can be pip installed:
-1. Download the package
-2. Go to the package's root directory using the command line
-3. Windows: python setup.py install
-   Mac: sudo python setup.py install
-   Package can also be installed from: https://github.com/AnoshZahir/Greengraph.git
+* Download the package
+* Go to the package's root directory using the command line
+* Depeding on your machine:
+    * Windows: python setup.py install
+    * Mac/other: sudo python setup.py install
+* Package can also be installed from: https://github.com/AnoshZahir/Greengraph.git
 
 ### How to use via command line:
 
@@ -26,4 +27,4 @@ The package has been setup so that it can be pip installed:
 
 --out or(-o) to give a filename for the output graph.  'You must only provide the file_name as '.png' will be added to the file_name by default.  The 'file_name.png' will be saved in the same directory from where the call was made.
 
-Example command line: Greengraph -f 'london' -t 'cambridge' -s 4 -o file_name~/Desktop/Greengraph
+Example command line: Greengraph -f 'london' -t 'cambridge' -s 4 -o file_name
