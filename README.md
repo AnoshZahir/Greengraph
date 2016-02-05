@@ -1,12 +1,9 @@
 Greengraph package
 ==================
 
-UCL_PythonForResearch assignment1
----------------------------------
+This package is about how urbanised the world is, based on satellite imagery, along a line betwen two cities.  We expect the satellite image to be greener in the countryside.
 
-The project is about how urbanised the world is, based on satellite imagery, along a line betwen two cities.  We expect the satellite image to be greener in the countryside.
-
-The package Greengraph contains two classes - Greengraph and Map.  The outcome is a png image of a graphs which plots the number of green pixels at regular intervals between two locations.
+The package contains two classes - Greengraph and Map.  The outcome is a png image of a graphs which plots the number of green pixels at regular intervals between two locations.
 
 
 ### How to install:
