@@ -2,15 +2,9 @@ test_geolocate:
   - location: 'London'
     location_lat: 51.5073509
     location_long: -0.1277583
-  - location: 'Cambridge'
+  - location: 'Cambridge' 
     location_lat: 52.205337
     location_long: 0.121817
-  - location: 'Glassgow'
-    location_lat: 55.864237
-    location_long: -4.251806
-  - location: 'Paris'
-    location_lat: 48.856614
-    location_long: 2.3522219
 
 test_location_sequence:
   - first_location_coordinates: !!python/tuple [51.5073509, -0.1277583]
