@@ -11,7 +11,7 @@ The package contains two classes - Greengraph and Map.  The outcome is a png ima
 The package has been setup so that it can be pip installed:
 * Download the package
 * Go to the package's root directory using the command line
-* Depeding on your machine:
+* Depending on your machine:
     * Windows: python setup.py install
     * Mac/other: sudo python setup.py install
 * Package can also be installed from: https://github.com/AnoshZahir/Greengraph.git
