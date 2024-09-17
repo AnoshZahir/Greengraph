@@ -86,8 +86,7 @@ def test_green_between(mock_count_green, mock_location_sequence):
     """
     mygraph = Greengraph(0.0, 0.0)
     
-    with open(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml')) as dataset:
-        green_between_data = yaml.load(dataset)['test_green_between']
+    green_between_data = safe_load_yaml(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml'))['test_green_between']
     
     for data in green_between_data:
         location_sequence_values = data.pop('location_sequence_values')
