@@ -21,8 +21,10 @@ def test_command_line_arguments():
     assert_equal( arguments.steps, 4)
     assert_equal( arguments.output, 'my_file')
 
-@mock.patch('__main__'.Greengraph)
-def test_green_plotter(mock_Greengraph)
+@patch('command.Greengraph')
+@patch('matplotlib.pyplot.savefig')
+@patch('matplotlib.pyplot.plot')
+def test_green_plotter(mock_plot, mock_savefig, mock_Greengraph):
     """
     Test the green_plotter function by mocking the Greengraph object, the plot function, and the savefig function.
     
@@ -31,6 +33,24 @@ def test_green_plotter(mock_Greengraph)
     - The correct number of green pixels between two locations is plotted.
     - The plot is saved to the correct output file.
     """
+    mock_graph_instance = mock_Greengraph.return_value
+    mock_graph_instance.green_between.return_value = [100, 200, 300, 400]  # Mock green pixel counts for test
+
+    args = parser.parse_args(['--from', 'London', '--to', 'Cambridge', '--steps', '4', '--out', 'test_output'])
+    
+    green_plotter(args)
+    
+    # Check if Greengraph was initialized correctly
+    mock_Greengraph.assert_called_with('London', 'Cambridge')
+
+    # Check if green_between was called with the correct steps
+    mock_graph_instance.green_between.assert_called_with(4)
+
+    # Check if plot was called with the correct data
+    mock_plot.assert_called_with([100, 200, 300, 400])
+
+    # Check if the plot was saved to the correct output file
+    mock_savefig.assert_called_with('test_output.png')
     
 @patch('command.parser.parse_args')
 @patch('command.green_plotter')
