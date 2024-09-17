@@ -67,7 +67,7 @@ class TestGreengraph(unittest.TestCase):
 
     @patch.object(Greengraph, 'location_sequence')
     @patch.object(Map, 'count_green')
-    def test_green_between(mock_count_green, mock_location_sequence):
+    def test_green_between(self, mock_count_green, mock_location_sequence):
         """
         Test that green_between returns a list of green pixels for each step between two locations.
         mock_count_green to account for dependency on count_green method from map class.
@@ -76,7 +76,8 @@ class TestGreengraph(unittest.TestCase):
         """
         mygraph = Greengraph(0.0, 0.0)
         
-        green_between_data = safe_load_yaml(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml'))['test_green_between']
+        with open(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml')) as dataset:
+            green_between_data = yaml.safe_load(dataset)['test_green_between']
         
         for data in green_between_data:
             location_sequence_values = data.pop('location_sequence_values')
@@ -88,4 +89,4 @@ class TestGreengraph(unittest.TestCase):
             
             expected_return = count_green_values
             actual_return = mygraph.count_green(steps) 
-            assert_equal(actual_return, expected_return)
+            self.assertEqual(actual_return, expected_return)
