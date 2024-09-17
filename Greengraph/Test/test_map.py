@@ -51,12 +51,12 @@ def test_build_default_params(mock_imread, mock_get):
 
 @patch.object(requests, 'get')
 @patch(matplotlib.image, 'imread')
-#@patch.object(Map, 'green')
 def test_green(mock_imread, mock_get):
-    '''
-    Test that the function can take a 3d matrix, and return a matrix of true/false values.
-    Data is taken from the 'test_green' subsection of map_data.yaml.
-    '''
+    """
+    Test that the 'green' method returns a matrix of True/False values based on 
+    whether the pixels are classified as green, using different thresholds.
+    Mocks 'requests.get' and 'matplotlib.image.imread' to avoid actual image loading.
+    """
     my_map = Map(51.50, -0.12)
     
     with open(os.path.join(os.path.dirname(__file__), 'data', 'map_data.yaml')) as dataset:
