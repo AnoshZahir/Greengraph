@@ -34,13 +34,15 @@ def green_plotter(arguments):
     """
     this_graph = Greengraph(arguments.first_location, arguments.second_location)# create an instance of the Greengraph class object.
     green_count = this_graph.green_between(arguments.steps)
-    plt.plot(green_count)
     
-    plt.title('Number of green pixels in locations between ' + arguments.first_location + ' and ' + arguments.second_location) 
+    # Plot green pixel counts between locations
+    plt.plot(green_count)
+    plt.title(f'Number of green pixels between {arguments.first_location} and {arguments.second_location}')
     plt.xlabel('Steps')
     plt.ylabel('Green pixels')
     
-    plt.savefig(arguments.output + '.png')
+    # Save plot to a .png file
+    plt.savefig(f'{arguments.output}.png')
     plt.show()
 
 def process():
