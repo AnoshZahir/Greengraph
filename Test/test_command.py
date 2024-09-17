@@ -52,8 +52,8 @@ class TestCommand(unittest.TestCase):
         # Check if the plot was saved to the correct output file
         mock_savefig.assert_called_with('test_output.png')
         
-    @patch('command.parser.parse_args')
-    @patch('command.green_plotter')
+    @patch('Greengraph.command.parser.parse_args')
+    @patch('Greengraph.command.green_plotter')
     def test_process(self, mock_parser, mock_green_plotter):
         """
         Test the overall process flow by ensuring that both the argument parser 
