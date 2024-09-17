@@ -72,10 +72,11 @@ def test_green(mock_imread, mock_get):
 
 @patch.object(Map, 'green')
 def test_count_green(mock_green):
-    '''
-    Test that a 2d input matrix of true/false values is correctly summed. 
+    """
+    Test that the 'count_green' method accurately sums the True/False values 
+    representing green pixels.
     Data is taken from the 'test_count_green' subsection of map_data.yaml.
-    '''
+    """
     my_map = Map(51.50, -0.12)
 
     with open(os.path.join(os.path.dirname(__file__), 'data', 'map_data.yaml')) as dataset:
