@@ -20,6 +20,7 @@ class TestCommand(unittest.TestCase):
         self.assertEqual( arguments.steps, 4)
         self.assertEqual( arguments.output, 'my_file')
 
+    @patch('Greengraph.command.plt.show')
     @patch('Greengraph.command.Greengraph')
     @patch('matplotlib.pyplot.savefig')
     @patch('matplotlib.pyplot.plot')
