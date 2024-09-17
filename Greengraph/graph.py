@@ -10,19 +10,20 @@ from map import Map
 class Greengraph(object):
 	def __init__(self, start: str, end: str):
 	    """
-    	Instantiate a Greengraph object with the specified start and end locations.
+		Instantiate a Greengraph object with the specified start and end locations.
 		Args:
         	start (str): The starting location for the analysis.
         	end (str): The ending location for the analysis.
 		"""
-	    self.start = start
-	    self.end = end
-	    self.geocoder = geopy.geocoders.GoogleV3(domain = "maps.google.co.uk")
+		self.start = start
+		self.end = end
+		self.geocoder = geopy.geocoders.GoogleV3(domain = "maps.google.co.uk")
 	
 	def geolocate(self, place):
 	    """
-	    Take one argument 'place' and return a tuple for that location's latitude and longitude.
-	    """
+		Take one argument 'place' and return a tuple for that location's latitude and longitude.
+		If the location cannot be found, return None.
+		"""
 	    return self.geocoder.geocode(place, exactly_one = False)[0][1]
 		
 	def location_sequence(self, start, end, steps):
