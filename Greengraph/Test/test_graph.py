@@ -99,4 +99,3 @@ def test_green_between(mock_count_green, mock_location_sequence):
         expected_return = count_green_values
         actual_return = mygraph.count_green(steps) 
         assert_equal(actual_return, expected_return)
-
