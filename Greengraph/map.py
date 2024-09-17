@@ -67,7 +67,13 @@ class Map(object):
     
     def count_green(self, threshold = 1.1):
         """
-        Take as argument a 'threshold' and return the number of green pixels in the image.
+        Count the number of green pixels in the image based on the threshold value.
+
+        Args:
+            threshold (float): Threshold to determine greenness of a pixel. Default is 1.1.
+
+        Returns:
+            int: Total number of green pixels.
         """
         return np.sum(self.green(threshold))
     
