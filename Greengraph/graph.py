@@ -6,6 +6,7 @@ generating location sequences, and analyzing green space between two specified l
 import numpy as np
 import geopy
 from map import Map
+from typing import Optional
 
 class Greengraph(object):
 	def __init__(self, start: str, end: str):
@@ -19,7 +20,7 @@ class Greengraph(object):
 		self.end = end
 		self.geocoder = geopy.geocoders.GoogleV3(domain = "maps.google.co.uk")
 	
-	def geolocate(self, place):
+	def geolocate(self, place:str) -> Optional[tuple]:
 	    """
 		Take one argument 'place' and return a tuple for that location's latitude and longitude.
 		If the location cannot be found, return None.
