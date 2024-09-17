@@ -14,8 +14,8 @@ import matplotlib
 import os
 import yaml
 
-from nose.tools import assert_called_with, assert_equal
-from mock import patch
+import unittest
+from unittest.mock import patch
 
 @patch.object(requests, 'get')
 @patch.object(matplotlib.image, 'imread')
