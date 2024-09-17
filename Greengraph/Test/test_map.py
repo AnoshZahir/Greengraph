@@ -4,8 +4,8 @@ This file includes tests for building map parameters, green pixel calculations,
 and counting green pixels between two locations.
 """
 
-from ..graph import Greengraph
-from ..map import Map
+from Greengraph.graph import Greengraph
+from Greengraph.map import Map
 
 import requests
 import numpy as np
