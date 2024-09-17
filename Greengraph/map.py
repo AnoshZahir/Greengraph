@@ -77,7 +77,7 @@ class Map(object):
         """
         return np.sum(self.green(threshold))
     
-    def show_green(self, threshold = 1.1):
+    def show_green(self, threshold:float = 1.1) -> bytes:
         """
         Generate an image where green pixels are highlighted.
 
