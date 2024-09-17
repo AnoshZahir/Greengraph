@@ -78,12 +78,12 @@ def test_location_sequence():
 @patch.object(Greengraph, 'location_sequence')
 @patch.object(Map, 'count_green')
 def test_green_between(mock_count_green, mock_location_sequence):
-    '''
+    """
     Test that green_between returns a list of green pixels for each step between two locations.
-    mock_count_green to account for dependancy on count_green method from map class.
-    mock_location_sequence to account for dependacy on location_sequence method.
+    mock_count_green to account for dependency on count_green method from map class.
+    mock_location_sequence to account for dependency on location_sequence method.
     Data for both mocks are taken from test_green_between subsection of graph_data.yaml.
-    '''
+    """
     mygraph = Greengraph(0.0, 0.0)
     
     with open(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml')) as dataset:
