@@ -1,3 +1,19 @@
+"""
+Unit tests for the command-line interface (CLI) functionality of the Greengraph project.
+
+This module tests the following aspects of the Greengraph CLI:
+- Argument parsing: Ensures that the argument parser correctly processes and assigns command-line arguments.
+- Plotting functionality: Verifies that the green space plot is generated and saved correctly based on user input.
+- Overall process: Ensures that the process function, which ties together argument parsing and plotting, works as expected.
+
+The tests use the `unittest.mock` library to mock external dependencies, including:
+- `matplotlib.pyplot` for plotting and saving the graph.
+- The `Greengraph` class to simulate green space calculation.
+- Argument parsing to simulate command-line arguments for different scenarios.
+
+These tests validate the correctness of the CLI without requiring actual input from the command line or generating real files.
+"""
+
 import unittest
 from unittest.mock import patch
 from Greengraph.command import parser, green_plotter, process
