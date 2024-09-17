@@ -23,7 +23,7 @@ class TestCommand(unittest.TestCase):
     @patch('command.Greengraph')
     @patch('matplotlib.pyplot.savefig')
     @patch('matplotlib.pyplot.plot')
-    def test_green_plotter(mock_plot, mock_savefig, mock_Greengraph):
+    def test_green_plotter(self, mock_plot, mock_savefig, mock_Greengraph):
         """
         Test the green_plotter function by mocking the Greengraph object, the plot function, and the savefig function.
         
@@ -53,11 +53,11 @@ class TestCommand(unittest.TestCase):
         
     @patch('command.parser.parse_args')
     @patch('command.green_plotter')
-    def test_process(mock_parser, mock_green_plotter):
+    def test_process(self, mock_parser, mock_green_plotter):
         """
         Test the overall process flow by ensuring that both the argument parser 
         and the green_plotter function are called during execution.
         """
         process()
-        assert_true(mock_parser.called)
-        assert_true(mock_green_plotter.called)
+        self.assertTrue(mock_parser.called)
+        self.assertTrue(mock_green_plotter.called)
