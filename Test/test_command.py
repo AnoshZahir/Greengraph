@@ -14,7 +14,7 @@ class TestCommand(unittest.TestCase):
         This test ensures that the parser processes and assigns the correct values 
         to the first_location, second_location, steps, and output arguments.
         """
-        arguments = parser.parse_args(['--from','London','--to','Cambridge','--steps', 4,'--out','my_file'])
+        arguments = parser.parse_args(['--from','London','--to','Cambridge','--steps', '4','--out','my_file'])
         self.assertEqual( arguments.first_location, 'London')
         self.assertEqual( arguments.second_location, 'Cambridge')
         self.assertEqual( arguments.steps, 4)
