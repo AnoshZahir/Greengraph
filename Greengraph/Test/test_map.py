@@ -20,7 +20,11 @@ from mock import patch
 @patch.object(requests, 'get')
 @patch.object(matplotlib.image, 'imread')
 def test_build_default_params(mock_imread, mock_get):    
-    
+    """
+    Test that the URL parameters for the Map class are built correctly 
+    based on different input arguments (satellite, zoom, size, sensor).
+    Mocks 'requests.get' and 'matplotlib.image.imread' to avoid actual API calls.
+    """  
     with open(os.path.join(os.path.dirname(__file__),'data','map_data.yaml')) as dataset:
         map_data = yaml.load(dataset)['test_map']
         
