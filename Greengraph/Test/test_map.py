@@ -17,7 +17,8 @@ import yaml
 import unittest
 from unittest.mock import patch
 
-class TestMap(unittest.TestCase)
+class TestMap(unittest.TestCase):
+
     @patch.object(requests, 'get')
     @patch.object(matplotlib.image, 'imread')
     def test_build_default_params(mock_imread, mock_get):    
@@ -27,7 +28,7 @@ class TestMap(unittest.TestCase)
         Mocks 'requests.get' and 'matplotlib.image.imread' to avoid actual API calls.
         """  
         with open(os.path.join(os.path.dirname(__file__),'data','map_data.yaml')) as dataset:
-            map_data = yaml.load(dataset, Loader=yaml.SafeLoader)['test_map'] # Use SafeLoader for YAML
+            map_data = yaml.safe_load(dataset)['test_map'] # Use SafeLoader for YAML
             
             for data in map_data:
                 test = data.pop('test')
