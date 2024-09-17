@@ -10,11 +10,18 @@ import os
 import yaml
 import unittest
 from unittest.mock import patch
+from yaml.constructor import ConstructorError
+
+# Adding constructor for tuples in YAML
+def tuple_constructor(loader, node):
+    return tuple(loader.construct_sequence(node))
+
+yaml.SafeLoader.add_constructor('tag:yaml.org,2002:python/tuple', tuple_constructor)
 
 class TestGreengraph(unittest.TestCase):
     
     @patch('geopy.geocoders.GoogleV3')
-    def test_Greengraph(self):
+    def test_Greengraph(self, mock_geocoder):
         '''
         Test to ensure Greengraph instantiates correctly.
         '''
