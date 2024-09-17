@@ -89,8 +89,11 @@ class TestGreengraph(unittest.TestCase):
         
         # Mock the geocode method to return fixed coordinates (latitude, longitude)
         mock_geocode.return_value = [(51.5074, -0.1278)]  # Mocked coordinates for London
-        mygraph = Greengraph('London', 'Cambridge', mock_GoogleV3)  # Pass the mock geocoder
         
+        # Pass the mock geocoder to Greengraph
+        mygraph = Greengraph('London', 'Cambridge', mock_GoogleV3)
+        
+        # Load mock data from the YAML file
         with open(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml')) as dataset:
             green_between_data = yaml.safe_load(dataset)['test_green_between']
         
@@ -99,13 +102,15 @@ class TestGreengraph(unittest.TestCase):
             count_green_values = data.pop('count_green_values')
             steps = data.pop('steps')
             
-            # Mock the behavior of count_green and location_sequence
+            # Mock the behavior of location_sequence and count_green
+            mock_location_sequence.return_value = location_sequence_values
             mock_count_green.side_effect = count_green_values
-            mock_location_sequence.side_effect = location_sequence_values
+
+            # Call the method to be tested
+            actual_return = mygraph.green_between(steps)
             
-            expected_return = count_green_values
-            actual_return = mygraph.count_green(steps) 
-            self.assertEqual(actual_return, expected_return)
+            # Assert that the results match the expected values
+            self.assertEqual(actual_return, count_green_values)
 
 if __name__ == '__main__':
     unittest.main()
