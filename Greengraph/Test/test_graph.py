@@ -61,9 +61,8 @@ def test_location_sequence():
     Data is taken from test_location_sequence subsection of graph_data.yaml.
     """
     mygraph = Greengraph(0.0, 0.0)
-    
-    with open(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml')) as dataset:
-        location_sequence_data = yaml.load(dataset)['test_location_sequence']
+
+    location_sequence_data = safe_load_yaml(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml'))['test_location_sequence']
     
     for data in location_sequence_data:
         first_location_coordinates = data.pop('first_location_coordinates')
