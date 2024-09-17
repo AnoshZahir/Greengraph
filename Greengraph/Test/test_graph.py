@@ -40,9 +40,8 @@ def test_geolocate(mock_geolocate):
     Since we are not testing the geocode method, it is mocked. The mocked values are taken from the test_geolocate subsection of graph_data.yaml.
     '''
     mygraph = Greengraph(0.0, 0.0)
-    
-    with open(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml')) as dataset:
-        geolocate_data = yaml.load(dataset)['test_geolocate']
+
+    geolocate_data = safe_load_yaml(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml'))['test_geolocate']
     
     for data in geolocate_data:
         location = data.pop('location')
