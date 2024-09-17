@@ -24,7 +24,7 @@ class TestCommand(unittest.TestCase):
     @patch('Greengraph.command.Greengraph')
     @patch('matplotlib.pyplot.savefig')
     @patch('matplotlib.pyplot.plot')
-    def test_green_plotter(self, mock_plot, mock_savefig, mock_Greengraph):
+    def test_green_plotter(self, mock_plot, mock_savefig, mock_Greengraph, mock_show):
         """
         Test the green_plotter function by mocking the Greengraph object, the plot function, and the savefig function.
         
