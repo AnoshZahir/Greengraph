@@ -53,12 +53,13 @@ class TestGreengraph(unittest.TestCase):
             
             self.assertEqual(actual_return, expected_return)
 
-    def test_location_sequence(self):
+    @patch('geopy.geocoders.GoogleV3')
+    def test_location_sequence(self, mock_geocoder):
         """
         Test that location_sequence method returns the correct values based on 'start', 'end' and 'steps' arguments.
         Data is taken from test_location_sequence subsection of graph_data.yaml.
         """
-        mygraph = Greengraph(0.0, 0.0)
+        mygraph = Greengraph('London', 'Cambridge', mock_geocoder)
 
         with open(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml')) as dataset:
             location_sequence_data = yaml.safe_load(dataset)['test_location_sequence']
