@@ -1,3 +1,10 @@
+"""
+This module handles the command-line interface (CLI) for the Greengraph project.
+It allows users to input two locations and the number of steps between them, 
+and generates a plot representing the green space between the two points.
+The output is saved as a .png image.
+"""
+
 from matplotlib import pyplot as plt
 from graph import Greengraph
 from argparse import ArgumentParser
