@@ -7,7 +7,7 @@ class TestCommand(unittest.TestCase):
     This module contains unit tests for the command-line functionality in the Greengraph project. 
     It tests the argument parser, the green plotting functionality, and the overall process.
     """ 
-    def test_command_line_arguments():
+    def test_command_line_arguments(self):
         """
         Test that the argument parser correctly assigns the arguments passed to it.
 
@@ -15,10 +15,10 @@ class TestCommand(unittest.TestCase):
         to the first_location, second_location, steps, and output arguments.
         """
         arguments = parser.parse_args(['--from','London','--to','Cambridge','--steps', 4,'--out','my_file'])
-        assert_equal( arguments.first_location, 'London')
-        assert_equal( arguments.second_location, 'Cambridge')
-        assert_equal( arguments.steps, 4)
-        assert_equal( arguments.output, 'my_file')
+        self.assertEqual( arguments.first_location, 'London')
+        self.assertEqual( arguments.second_location, 'Cambridge')
+        self.assertEqual( arguments.steps, 4)
+        self.assertEqual( arguments.output, 'my_file')
 
     @patch('command.Greengraph')
     @patch('matplotlib.pyplot.savefig')
