@@ -86,6 +86,6 @@ def test_count_green(mock_green):
         input_values = data.pop('input_values')
         expected_return = data.pop('result')
         
-        mock_green.return_value = input_values
-        actual_return = my_map.count_green() #threshold kept unchanged for this test.
+        mock_green.return_value = input_values # Mocking the green pixel data
+        actual_return = my_map.count_green() # Count green pixels
         assert_equal(actual_return, expected_return)
