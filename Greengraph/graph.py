@@ -39,8 +39,12 @@ class Greengraph(object):
 	    """
 	    Return the number of green pixels for each point between two locations.
 	    """
-	    return [Map(*location).count_green()
-		for location in self.location_sequence(
-		  self.geolocate(self.start),
-		  self.geolocate(self.end),
-		  steps)]
+		start_coords = self.geolocate(self.start)
+		end_coords = self.geolocate(self.end)
+
+		# Error handling for the case when the geolocate method returns None.
+		if start_coords is None or end_coords is None:
+			return []
+	    
+		return [Map(*location).count_green()
+			for location in self.location_sequence(start_coords, end_coords, steps)]
