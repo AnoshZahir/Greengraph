@@ -74,15 +74,20 @@ class TestGreengraph(unittest.TestCase):
                 for coordinate in range(0, 2):
                     self.assertAlmostEqual(actual_return[step_num][coordinate], expected_return[step_num][coordinate])
 
+    @patch('geopy.geocoders.GoogleV3.geocode')
     @patch.object(Greengraph, 'location_sequence')
     @patch.object(Map, 'count_green')
-    def test_green_between(self, mock_count_green, mock_location_sequence):
+    def test_green_between(self, mock_count_green, mock_location_sequence, mock_geocode):
         """
         Test that green_between returns a list of green pixels for each step between two locations.
         mock_count_green to account for dependency on count_green method from map class.
         mock_location_sequence to account for dependency on location_sequence method.
         Data for both mocks are taken from test_green_between subsection of graph_data.yaml.
         """
+        
+        # Mock the geocode method to return fixed coordinates (latitude, longitude)
+        mock_geocode.return_value = [(51.5074, -0.1278)]  # Mocked coordinates for London
+
         mygraph = Greengraph(0.0, 0.0)
         
         with open(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml')) as dataset:
@@ -93,6 +98,7 @@ class TestGreengraph(unittest.TestCase):
             count_green_values = data.pop('count_green_values')
             steps = data.pop('steps')
             
+            # Mock the behavior of count_green and location_sequence
             mock_count_green.side_effect = count_green_values
             mock_location_sequence.side_effect = location_sequence_values
             
