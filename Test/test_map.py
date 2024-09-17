@@ -52,7 +52,7 @@ class TestMap(unittest.TestCase):
                 mock_get.assert_called_with(url,params=params)
 
     @patch.object(requests, 'get')
-    @patch(matplotlib.image, 'imread')
+    @patch('matplotlib.pyplot.imread')
     def test_green(self, mock_imread, mock_get):
         """
         Test that the 'green' method returns a matrix of True/False values based on 

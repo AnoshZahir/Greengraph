@@ -17,6 +17,7 @@ Dependencies:
 
 import numpy as np
 from io import StringIO
+from io import BytesIO
 from matplotlib import image as img
 import requests
 from typing import Tuple
@@ -48,7 +49,7 @@ class Map(object):
             params["maptype"] = "satellite"
         
         self.image = requests.get(base, params = params).content #response.get returns a 'Response' object.
-        self.pixels = img.imread(StringIO(self.image))
+        self.pixels = img.imread(BytesIO(self.image))
     
     def green(self, threshold: float) -> np.ndarray:
         """
