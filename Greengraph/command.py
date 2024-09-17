@@ -22,6 +22,16 @@ parser.add_argument('-o', '--out', dest='output', default='output',
                     help='Enter the name of the output file. The file will be saved as a .png.')
     
 def green_plotter(arguments):
+    """
+    Generates a plot showing the green space between two locations.
+    
+    Args:
+        arguments: Parsed command-line arguments including:
+            - first_location: The starting location.
+            - second_location: The ending location.
+            - steps: Number of steps between the two locations.
+            - output: The output file name for the .png plot.
+    """
     this_graph = Greengraph(arguments.first_location, arguments.second_location)# create an instance of the Greengraph class object.
     green_count = this_graph.green_between(arguments.steps)
     plt.plot(green_count)
