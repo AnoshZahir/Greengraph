@@ -4,9 +4,10 @@ from Greengraph.command import parser, green_plotter, process
 
 class TestCommand(unittest.TestCase):
     """
-    This module contains unit tests for the command-line functionality in the Greengraph project. 
+    This class contains unit tests for the command-line functionality in the Greengraph project. 
     It tests the argument parser, the green plotting functionality, and the overall process.
-    """ 
+    """
+
     def test_command_line_arguments(self):
         """
         Test that the argument parser correctly assigns the arguments passed to it.
@@ -15,6 +16,8 @@ class TestCommand(unittest.TestCase):
         to the first_location, second_location, steps, and output arguments.
         """
         arguments = parser.parse_args(['--from','London','--to','Cambridge','--steps', '4','--out','my_file'])
+        
+        # Validate that the parsed arguments are correctly assigned
         self.assertEqual( arguments.first_location, 'London')
         self.assertEqual( arguments.second_location, 'Cambridge')
         self.assertEqual( arguments.steps, 4)
@@ -33,23 +36,26 @@ class TestCommand(unittest.TestCase):
         - The correct number of green pixels between two locations is plotted.
         - The plot is saved to the correct output file.
         """
+        # Mock green pixel counts returned by the green_between function
         mock_graph_instance = mock_Greengraph.return_value
         mock_graph_instance.green_between.return_value = [100, 200, 300, 400]  # Mock green pixel counts for test
 
+        # Simulate arguments parsed from the command line
         args = parser.parse_args(['--from', 'London', '--to', 'Cambridge', '--steps', '4', '--out', 'test_output'])
         
+        # Call the green_plotter function with the mocked arguments
         green_plotter(args)
         
-        # Check if Greengraph was initialized correctly
+        # Check if Greengraph was initialized correctly with the expected arguments
         mock_Greengraph.assert_called_with('London', 'Cambridge')
 
-        # Check if green_between was called with the correct steps
+        # Check if green_between was called with the correct number of steps
         mock_graph_instance.green_between.assert_called_with(4)
 
-        # Check if plot was called with the correct data
+        # Verify that plot was called with the correct green pixel data
         mock_plot.assert_called_with([100, 200, 300, 400])
 
-        # Check if the plot was saved to the correct output file
+        # Ensure the plot was saved to the correct output file
         mock_savefig.assert_called_with('test_output.png')
         
     @patch('Greengraph.command.parser.parse_args')
@@ -58,9 +64,17 @@ class TestCommand(unittest.TestCase):
         """
         Test the overall process flow by ensuring that both the argument parser 
         and the green_plotter function are called during execution.
+
+        This test validates that process() correctly calls the necessary functions 
+        to parse arguments and generate the green space plot.
         """
+        # Call the process function, which should invoke both the parser and green_plotter
         process()
+
+        # Verify that the argument parser was called
         self.assertTrue(mock_parser.called)
+
+        # Verify that the green_plotter function was called
         self.assertTrue(mock_green_plotter.called)
 
 if __name__ == '__main__':
