@@ -56,10 +56,10 @@ def test_geolocate(mock_geolocate):
         assert_equal(actual_return, expected_return)
 
 def test_location_sequence():
-    '''
-    Test that location_sequence method returns the correct values based on 'start', 'end' and 'steps' arguments. 
+    """
+    Test that location_sequence method returns the correct values based on 'start', 'end' and 'steps' arguments.
     Data is taken from test_location_sequence subsection of graph_data.yaml.
-    '''
+    """
     mygraph = Greengraph(0.0, 0.0)
     
     with open(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml')) as dataset:
