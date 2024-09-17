@@ -80,7 +80,7 @@ def test_count_green(mock_green):
     my_map = Map(51.50, -0.12)
 
     with open(os.path.join(os.path.dirname(__file__), 'data', 'map_data.yaml')) as dataset:
-        map_data = yaml.load(dataset)['test_count_green']
+        map_data = yaml.load(dataset, Loader=yaml.SafeLoader)['test_count_green']
     
     for data in map_data:
         input_values = data.pop('input_values')
