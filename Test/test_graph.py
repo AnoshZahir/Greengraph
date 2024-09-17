@@ -12,7 +12,8 @@ import unittest
 from unittest.mock import patch
 
 class TestGreengraph(unittest.TestCase):
-
+    
+    @patch('geopy.geocoders.GoogleV3')
     def test_Greengraph(self):
         '''
         Test to ensure Greengraph instantiates correctly.
@@ -21,8 +22,9 @@ class TestGreengraph(unittest.TestCase):
         self.assertEqual(actual.start, 'London')
         self.assertEqual(actual.end, 'Cambridge')
 
+    @patch('geopy.geocoders.GoogleV3')
     @patch.object(Greengraph, 'geolocate')
-    def test_geolocate(self, mock_geolocate):
+    def test_geolocate(self, mock_geolocate, mock_geocoder):
         '''
         Test that geolocate method returns the output of geopy.geocoders.GoogleV3.geocode.
         Since we are not testing the geocode method, it is mocked. The mocked values are taken from the test_geolocate subsection of graph_data.yaml.
