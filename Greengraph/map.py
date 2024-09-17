@@ -92,4 +92,3 @@ class Map(object):
         buffer = StringIO()
         img.imsave(buffer, out, format = 'png')
         return buffer.getvalue()
-    
