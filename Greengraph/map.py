@@ -23,8 +23,15 @@ import requests
 class Map(object):
     def __init__(self, lat, long, satellite = True, zoom = 10, size = (400, 400), sensor = False):
         """
-        Construct a URL.
-        Then assign to self.pixels the numpy array of the PNG image of the googlemaps location in the URL.
+        Initialize a Map object with the provided latitude, longitude, and other optional parameters.
+        
+        Args:
+            lat (float): Latitude of the location.
+            long (float): Longitude of the location.
+            satellite (bool): Whether to use satellite imagery. Default is True.
+            zoom (int): Zoom level of the map. Default is 10.
+            size (Tuple[int, int]): Size of the map image in pixels. Default is (400, 400).
+            sensor (bool): Whether the map is based on a sensor. Default is False.
         """
 
         base = "http://maps.googleapis.com/maps/api/staticmap?"
