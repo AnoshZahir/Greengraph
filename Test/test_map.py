@@ -1,7 +1,14 @@
 """
-Unit tests for the Map class and its interactions with the Greengraph class.
-This file includes tests for building map parameters, green pixel calculations,
-and counting green pixels between two locations.
+Unit tests for the `Map` class and its interactions with the `Greengraph` class.
+
+This module includes tests to validate the following functionality:
+- URL parameter construction based on user inputs.
+- Calculation of green pixels based on satellite image data.
+- Counting the number of green pixels for specified locations.
+- Simulating image retrieval and processing from the Google Maps API.
+
+The tests use mocking to avoid actual HTTP requests and image processing while ensuring that the
+core functionality of the `Map` class operates as expected.
 """
 
 from Greengraph.graph import Greengraph
@@ -18,13 +25,23 @@ import unittest
 from unittest.mock import patch
 
 class TestMap(unittest.TestCase):
+    """
+    Unit tests for the `Map` class to validate:
+    - URL parameter construction.
+    - Green pixel calculation.
+    - Green pixel counting.
+    
+    Mocks external dependencies like `requests` and `matplotlib` to focus on internal logic.
+    """
 
     @patch.object(requests, 'get')
     @patch('matplotlib.image.imread')
     def test_build_default_params(self, mock_imread, mock_get):    
         """
-        Test that the URL parameters for the Map class are built correctly 
-        based on different input arguments (satellite, zoom, size, sensor).
+        Test URL parameter construction for the `Map` class.
+
+        Ensures that different input combinations for satellite imagery, zoom, size, and sensor
+        options correctly build the expected URL parameters for the Google Maps API.
         """
         # Mock the image response to be a valid 400x400x3 NumPy array
         mock_imread.return_value = np.random.rand(400, 400, 3).astype(np.float32)
@@ -58,8 +75,10 @@ class TestMap(unittest.TestCase):
     @patch('matplotlib.image.imread')
     def test_green(self, mock_imread, mock_get):
         """
-        Test that the 'green' method returns a matrix of True/False values based on 
-        whether the pixels are classified as green.
+        Test the `green` method to verify correct identification of green pixels.
+
+        This test ensures that the method correctly returns a boolean matrix where `True`
+        values correspond to pixels classified as green based on the input threshold.
         """
         # Mock the image response to be a valid 400x400x3 NumPy array
         mock_imread.return_value = np.random.rand(400, 400, 3).astype(np.float32)
@@ -75,7 +94,7 @@ class TestMap(unittest.TestCase):
             input_matrix = np.array(data.pop('3d_input_matrix')).astype(np.float32)
             expected_return = np.array(data.pop('2d_output_matrix')).astype(bool)
 
-            my_map.pixels = input_matrix  # Injecting mock pixel data
+            my_map.pixels = input_matrix  # Inject mock pixel data
             actual_return = my_map.green(threshold)
             
             np.testing.assert_array_equal(expected_return, actual_return)
@@ -84,9 +103,12 @@ class TestMap(unittest.TestCase):
     @patch('matplotlib.image.imread')
     def test_count_green(self, mock_imread, mock_green):
         """
-        Test that the 'count_green' method accurately sums the True/False values 
-        representing green pixels.
+        Test the `count_green` method to verify correct counting of green pixels.
+
+        This test ensures that the method returns the correct number of green pixels
+        when provided with a mocked green pixel matrix.
         """
+        # Mock image and green pixel data
         mock_imread.return_value = np.random.rand(400, 400, 3).astype(np.float32)
         mock_green.return_value = np.array([[True, False], [True, True]])
 
@@ -94,19 +116,6 @@ class TestMap(unittest.TestCase):
         result = my_map.count_green()
 
         self.assertEqual(result, 3)
-
-        #with open(os.path.join(os.path.dirname(__file__), 'data', 'map_data.yaml')) as dataset:
-        #    map_data = yaml.load(dataset, Loader=yaml.SafeLoader)['test_count_green']
-        
-        #for data in map_data:
-         #   input_values = data.pop('input_values')
-         #   expected_return = data.pop('result')
-            
-            # Mocking the green pixel data
-         #   mock_green.return_value = input_values
-         #   actual_return = my_map.count_green()
-
-         #   self.assertEqual(actual_return, expected_return)
 
 if __name__ == '__main__':
     unittest.main()
