@@ -1,3 +1,8 @@
+"""
+This module contains unit tests for the Greengraph class in the graph.py module.
+It tests geolocation, location sequence generation, and green space analysis functionality.
+"""
+
 from ..graph import Greengraph
 from ..map import Map
 
