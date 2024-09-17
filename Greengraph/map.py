@@ -88,8 +88,8 @@ class Map(object):
             bytes: The binary content of the generated image.
         """
         green = self.green(threshold) # return an array of true/false 
-        out = green[:,:,np.newaxis]*np.array([0,1,0])[np.newaxis, np.newaxis, :]
+        out = green[:, :, np.newaxis] * np.array([0, 1, 0])[np.newaxis, np.newaxis, :]
         buffer = StringIO()
-        result = img.imsave(buffer, out, format = 'png')
+        img.imsave(buffer, out, format = 'png')
         return buffer.getvalue()
     
