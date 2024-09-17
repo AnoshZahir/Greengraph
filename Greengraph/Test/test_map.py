@@ -1,3 +1,9 @@
+"""
+Unit tests for the Map class and its interactions with the Greengraph class.
+This file includes tests for building map parameters, green pixel calculations,
+and counting green pixels between two locations.
+"""
+
 from ..graph import Greengraph
 from ..map import Map
 
