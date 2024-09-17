@@ -50,7 +50,7 @@ class Map(object):
         self.image = requests.get(base, params = params).content #response.get returns a 'Response' object.
         self.pixels = img.imread(StringIO(self.image))
     
-    def green(self, threshold):
+    def green(self, threshold: float) -> np.ndarray:
         """
         Determine which pixels are green based on the threshold value.
 
