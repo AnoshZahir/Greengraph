@@ -1,3 +1,20 @@
+"""
+This module defines the Map class, which is used to interact with the Google Maps API
+to retrieve static satellite images, analyze the greenness of a map, and count the 
+number of green pixels.
+
+The Map class provides methods to:
+- Fetch a static satellite image from Google Maps for a specific location.
+- Analyze the pixel data of the image to determine which pixels are green.
+- Count the total number of green pixels in the image.
+- Generate a new image highlighting the green pixels.
+
+Dependencies:
+- numpy
+- requests
+- matplotlib
+"""
+
 import numpy as np
 from io import StringIO
 from matplotlib import image as img
@@ -9,7 +26,7 @@ class Map(object):
         Construct a URL.
         Then assign to self.pixels the numpy array of the PNG image of the googlemaps location in the URL.
         """
-       
+
         base = "http://maps.googleapis.com/maps/api/staticmap?"
         
         params = dict(
