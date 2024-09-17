@@ -62,8 +62,8 @@ class TestMap(unittest.TestCase):
         my_map = Map(51.50, -0.12)
         
         with open(os.path.join(os.path.dirname(__file__), 'data', 'map_data.yaml')) as dataset:
-            map_data = yaml.load(dataset, Loader=yaml.SafeLoader)['test_green']
-        
+            map_data = yaml.safe_load(dataset)['test_green']
+            
         for data in map_data:
             threshold = data.pop('test')
             input_matrix = data.pop('3d_input_matrix')
