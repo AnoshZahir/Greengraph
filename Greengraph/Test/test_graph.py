@@ -90,3 +90,6 @@ class TestGreengraph(unittest.TestCase):
             expected_return = count_green_values
             actual_return = mygraph.count_green(steps) 
             self.assertEqual(actual_return, expected_return)
+
+if __name__ == '__main__':
+    unittest.main()
