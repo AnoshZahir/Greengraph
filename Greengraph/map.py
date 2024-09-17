@@ -79,7 +79,13 @@ class Map(object):
     
     def show_green(self, threshold = 1.1):
         """
-        
+        Generate an image where green pixels are highlighted.
+
+        Args:
+            threshold (float): Threshold to determine greenness of a pixel. Default is 1.1.
+
+        Returns:
+            bytes: The binary content of the generated image.
         """
         green = self.green(threshold) # return an array of true/false 
         out = green[:,:,np.newaxis]*np.array([0,1,0])[np.newaxis, np.newaxis, :]
