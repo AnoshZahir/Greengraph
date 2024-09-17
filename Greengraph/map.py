@@ -22,6 +22,18 @@ import requests
 from typing import Tuple
 
 class Map(object):
+    """
+    The Map class interacts with the Google Maps API to fetch satellite imagery
+    for a given location, process that imagery, and analyze green pixels.
+
+    Attributes:
+        lat (float): Latitude of the location.
+        long (float): Longitude of the location.
+        satellite (bool): Whether to use satellite imagery. Defaults to True.
+        zoom (int): Zoom level for the map image. Defaults to 10.
+        size (Tuple[int, int]): The dimensions of the map image. Defaults to (400, 400).
+        sensor (bool): Whether the map is sensor-based. Defaults to False.
+    """
     def __init__(self, lat: float, long: float, satellite: bool = True, zoom: int = 10, size: Tuple[int, int] = (400, 400), sensor: bool = False):
         """
         Initialize a Map object with the provided latitude, longitude, and other optional parameters.
@@ -47,12 +59,12 @@ class Map(object):
         if satellite:
             params["maptype"] = "satellite"
         
-        # Simulate a valid image content
-        self.image = requests.get(base, params = params).content # Fetch the image data as binary
+        # Fetch the image data as binary and handle potential invalid image formats
+        self.image = requests.get(base, params = params).content
         try:
             self.pixels = img.imread(BytesIO(self.image)) if self.image else np.random.rand(400, 400, 3).astype(np.float32) 
         except Exception:
-            # Handle cases where the image might not be a valid format, return a default random image
+            # Return a random image if the image data is invalid
             self.pixels = np.random.rand(400, 400, 3).astype(np.float32)
             
     def green(self, threshold: float) -> np.ndarray:
@@ -68,7 +80,7 @@ class Map(object):
         greener_than_red = self.pixels[:, :, 1] > threshold * self.pixels[:, :, 0]
         greener_than_blue = self.pixels[:, :, 1] > threshold * self.pixels[:, :, 2]
         green = np.logical_and(greener_than_red, greener_than_blue)
-        return green # 400x400 array of true/false values. 
+        return green
     
     def count_green(self, threshold:float = 1.1) -> int:
         """
