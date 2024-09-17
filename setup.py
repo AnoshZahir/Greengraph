@@ -16,8 +16,7 @@ setup(
         'matplotlib',
         'requests',
         'numpy',
-        'mock',
-        'nose'  # Include nose for testing
+        'mock'
     ],
     python_requires='>=3.5'
 )
