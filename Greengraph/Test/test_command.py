@@ -54,7 +54,7 @@ def test_green_plotter(mock_plot, mock_savefig, mock_Greengraph):
     
 @patch('command.parser.parse_args')
 @patch('command.green_plotter')
-def test_process(mock_parser, mock_green_plotter)
+def test_process(mock_parser, mock_green_plotter):
     """
     Test the overall process flow by ensuring that both the argument parser 
     and the green_plotter function are called during execution.
