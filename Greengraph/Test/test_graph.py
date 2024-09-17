@@ -36,8 +36,8 @@ def test_Greengraph():
 @patch.object(Greengraph, 'geolocate')
 def test_geolocate(mock_geolocate):
     '''
-    Test that geolocate method returns the the output of geopy.geocoders.GoogleV3.geocode.
-    Since we are not testing the geocode method, it is mocked. The mocked values are taken from the test_geolocate subsection of graph_data.yaml file
+    Test that geolocate method returns the output of geopy.geocoders.GoogleV3.geocode.
+    Since we are not testing the geocode method, it is mocked. The mocked values are taken from the test_geolocate subsection of graph_data.yaml.
     '''
     mygraph = Greengraph(0.0, 0.0)
     
