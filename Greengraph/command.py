@@ -6,7 +6,7 @@ The output is saved as a .png image.
 """
 
 from matplotlib import pyplot as plt
-from graph import Greengraph
+from Greengraph.graph import Greengraph
 from argparse import ArgumentParser
 
 # Argument parser for the command-line interface
