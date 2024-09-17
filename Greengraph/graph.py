@@ -9,23 +9,26 @@ from Greengraph.map import Map
 from typing import Optional
 
 class Greengraph(object):
-    def __init__(self, start: str, end: str):
+    def __init__(self, start: str, end: str, geocoder=None):
         """
         Instantiate a Greengraph object with the specified start and end locations.
         Args:
             start (str): The starting location for the analysis.
             end (str): The ending location for the analysis.
+            geocoder (object): An optional geocoder instance for geolocation. Defaults to GoogleV3 geocoder.
         """
         self.start = start
         self.end = end
-        self.geocoder = geopy.geocoders.GoogleV3(domain = "maps.google.co.uk")
+        # If no geocoder is provided, default to GoogleV3 geocoder
+        self.geocoder = geocoder or geopy.geocoders.GoogleV3(domain = "maps.google.co.uk")
     
     def geolocate(self, place:str) -> Optional[tuple]:
         """
         Take one argument 'place' and return a tuple for that location's latitude and longitude.
         If the location cannot be found, return None.
         """
-        return self.geocoder.geocode(place, exactly_one = False)[0][1]
+        geocode_result = self.geocoder.geocode(place, exactly_one=False)
+        return geocode_result[0][1] if geocode_result else None
         
     def location_sequence(self, start:tuple, end:tuple, steps:int) -> np.ndarray:
         """
