@@ -22,14 +22,15 @@ class TestGreengraph(unittest.TestCase):
         self.assertEqual(actual.end, 'Cambridge')
 
     @patch.object(Greengraph, 'geolocate')
-    def test_geolocate(mock_geolocate):
+    def test_geolocate(self, mock_geolocate):
         '''
         Test that geolocate method returns the output of geopy.geocoders.GoogleV3.geocode.
         Since we are not testing the geocode method, it is mocked. The mocked values are taken from the test_geolocate subsection of graph_data.yaml.
         '''
         mygraph = Greengraph(0.0, 0.0)
 
-        geolocate_data = safe_load_yaml(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml'))['test_geolocate']
+        with open(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml')) as dataset:
+            geolocate_data = yaml.safe_load(dataset)['test_geolocate']
         
         for data in geolocate_data:
             location = data.pop('location')
@@ -41,7 +42,7 @@ class TestGreengraph(unittest.TestCase):
 
             actual_return = mygraph.geolocate(location)
             
-            assert_equal(actual_return, expected_return)
+            self.assertEqual(actual_return, expected_return)
 
     def test_location_sequence():
         """
