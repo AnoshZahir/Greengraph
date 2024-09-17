@@ -1,3 +1,8 @@
+"""
+This module contains unit tests for the command-line functionality in the Greengraph project. 
+It tests the argument parser, the green plotting functionality, and the overall process.
+"""
+
 from ..command import parser, green_plotter, process
 
 from nose.tools import assert_equal, assert_true
