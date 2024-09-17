@@ -20,7 +20,7 @@ from unittest.mock import patch
 class TestMap(unittest.TestCase):
 
     @patch.object(requests, 'get')
-    @patch.object(matplotlib.image, 'imread')
+    @patch('matplotlib.image.imread')
     def test_build_default_params(self, mock_imread, mock_get):    
         """
         Test that the URL parameters for the Map class are built correctly 
