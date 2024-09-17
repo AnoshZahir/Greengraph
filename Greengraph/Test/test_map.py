@@ -53,7 +53,7 @@ class TestMap(unittest.TestCase):
 
     @patch.object(requests, 'get')
     @patch(matplotlib.image, 'imread')
-    def test_green(mock_imread, mock_get):
+    def test_green(self, mock_imread, mock_get):
         """
         Test that the 'green' method returns a matrix of True/False values based on 
         whether the pixels are classified as green, using different thresholds.
@@ -63,14 +63,14 @@ class TestMap(unittest.TestCase):
         
         with open(os.path.join(os.path.dirname(__file__), 'data', 'map_data.yaml')) as dataset:
             map_data = yaml.safe_load(dataset)['test_green']
-            
+
         for data in map_data:
             threshold = data.pop('test')
             input_matrix = data.pop('3d_input_matrix')
             expected_return = data.pop('2d_output_matrix')
             my_map.__setattr__('pixels', input_matrix) # Injecting mock pixel data
             actual_return = my_map.green(threshold)
-            assert_equal(expected_return, actual_return)
+            self.assertEqual(expected_return, actual_return)
 
     @patch.object(Map, 'green')
     def test_count_green(mock_green):
