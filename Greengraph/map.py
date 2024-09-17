@@ -65,7 +65,7 @@ class Map(object):
         green = np.logical_and(greener_than_red, greener_than_blue)
         return green # 400x400 array of true/false values. 
     
-    def count_green(self, threshold = 1.1):
+    def count_green(self, threshold:float = 1.1) -> int:
         """
         Count the number of green pixels in the image based on the threshold value.
 
