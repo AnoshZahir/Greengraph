@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from ..command import parser, green_plotter, process
+from Greengraph.command import parser, green_plotter, process
 
 class TestCommand(unittest.TestCase):
     """
