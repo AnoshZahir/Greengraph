@@ -8,9 +8,22 @@ from ..map import Map
 
 import os
 import yaml
-
 from nose.tools import assert_equal, assert_almost_equal
 from mock import patch
+
+# Use safe_load for YAML to avoid potential security risks.
+def safe_load_yaml(file_path: str) -> dict:
+    """
+    Load YAML data from a file using safe_load.
+
+    Args:
+        file_path (str): Path to the YAML file.
+
+    Returns:
+        dict: The loaded YAML data.
+    """
+    with open(file_path, 'r') as dataset:
+        return yaml.safe_load(dataset)
 
 def test_Greengraph():
     '''
