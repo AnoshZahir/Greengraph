@@ -27,7 +27,7 @@ class Greengraph(object):
 		"""
 	    return self.geocoder.geocode(place, exactly_one = False)[0][1]
 		
-	def location_sequence(self, start, end, steps):
+	def location_sequence(self, start:tuple, end:tuple, steps:int) -> np.ndarray:
 	    """
 	    Return according to 'steps' an evenly spaced set of places between the 'start' and 'end' locations. 
 	    """
