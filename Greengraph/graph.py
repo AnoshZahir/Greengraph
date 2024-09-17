@@ -35,7 +35,7 @@ class Greengraph(object):
 	    longs = np.linspace(start[1], end[1], steps)
 	    return np.vstack([lats, longs]).transpose()
 	
-	def green_between(self, steps):
+	def green_between(self, steps:int) -> list:
 	    """
 	    Return the number of green pixels for each point between two locations.
 	    """
