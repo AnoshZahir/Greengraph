@@ -44,15 +44,16 @@ class TestGreengraph(unittest.TestCase):
             
             self.assertEqual(actual_return, expected_return)
 
-    def test_location_sequence():
+    def test_location_sequence(self):
         """
         Test that location_sequence method returns the correct values based on 'start', 'end' and 'steps' arguments.
         Data is taken from test_location_sequence subsection of graph_data.yaml.
         """
         mygraph = Greengraph(0.0, 0.0)
 
-        location_sequence_data = safe_load_yaml(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml'))['test_location_sequence']
-        
+        with open(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml')) as dataset:
+            location_sequence_data = yaml.safe_load(dataset)['test_location_sequence']
+
         for data in location_sequence_data:
             first_location_coordinates = data.pop('first_location_coordinates')
             second_location_coordinates = data.pop('second_location_coordinates')
@@ -62,7 +63,7 @@ class TestGreengraph(unittest.TestCase):
             actual_return = mygraph.location_sequence(first_location_coordinates, second_location_coordinates, steps)
             for step_num in range(0, steps):
                 for coordinate in range(0, 2):
-                    assert_almost_equal(actual_return[step_num][coordinate], expected_return[step_num][coordinate])
+                    self.assertAlmostEqual(actual_return[step_num][coordinate], expected_return[step_num][coordinate])
 
     @patch.object(Greengraph, 'location_sequence')
     @patch.object(Map, 'count_green')
