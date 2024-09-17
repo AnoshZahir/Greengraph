@@ -2,11 +2,9 @@
 This module contains unit tests for the command-line functionality in the Greengraph project. 
 It tests the argument parser, the green plotting functionality, and the overall process.
 """
-
+import unittest
+from unittest.mock import patch
 from ..command import parser, green_plotter, process
-
-from nose.tools import assert_equal, assert_true
-from mock import patch
 
 def test_command_line_arguments():
     """
