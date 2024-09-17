@@ -60,13 +60,13 @@ def test_green(mock_imread, mock_get):
     my_map = Map(51.50, -0.12)
     
     with open(os.path.join(os.path.dirname(__file__), 'data', 'map_data.yaml')) as dataset:
-        map_data = yaml.load(dataset)['test_green']
+        map_data = yaml.load(dataset, Loader=yaml.SafeLoader)['test_green']
     
     for data in map_data:
         threshold = data.pop('test')
         input_matrix = data.pop('3d_input_matrix')
         expected_return = data.pop('2d_output_matrix')
-        my_map.__setattr__('pixels', input_matrix)
+        my_map.__setattr__('pixels', input_matrix) # Injecting mock pixel data
         actual_return = my_map.green(threshold)
         assert_equal(expected_return, actual_return)
 
