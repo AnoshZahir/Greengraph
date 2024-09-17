@@ -56,22 +56,22 @@ test_map:
                    'size': '400x400'}
 
 test_green:
- - test: 'threshold = 1.5'
+ - test: 1.5
    3d_input_matrix: [[[ 0.17254902,  0.26666668,  0.15686275], [ 0.14117648,  0.25098041,  0.1254902 ]], [[ 0.1254902 ,  0.23529412,  0.1254902 ], [ 0.1254902 ,  0.21960784,  0.10980392]]]
    2d_output_matrix: [[True, True], [True, True]]
 
- - test: 'threshold = 0.5'
+ - test: 0.5
    3d_input_matrix: [[[ 0.17254902,  0.26666668,  0.15686275], [ 0.14117648,  0.25098041,  0.1254902 ]], [[ 0.1254902 ,  0.23529412,  0.1254902 ], [ 0.1254902 ,  0.21960784,  0.10980392]]]
    2d_output_matrix: [[True, True], [True, True]]
 
- - Test: 'threshold = -1'
+ - test: -1
    3d_input_matrix: [[[ 0.17254902,  0.26666668,  0.15686275], [ 0.14117648,  0.25098041,  0.1254902 ]], [[ 0.1254902 ,  0.23529412,  0.1254902 ], [ 0.1254902 ,  0.21960784,  0.10980392]]]
    2d_output_matrix: [[True, True], [True, True]]
 
 test_count_green:
  - test: 1
-  input_values: [[True, True], [True, True]]
-  result: 4
+   input_values: [[True, True], [True, True]]
+   result: 4
 
  - test: 2
    input_values: [[True, False], [False, True]]
