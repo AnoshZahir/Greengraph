@@ -26,7 +26,7 @@ def test_build_default_params(mock_imread, mock_get):
     Mocks 'requests.get' and 'matplotlib.image.imread' to avoid actual API calls.
     """  
     with open(os.path.join(os.path.dirname(__file__),'data','map_data.yaml')) as dataset:
-        map_data = yaml.load(dataset)['test_map']
+        map_data = yaml.load(dataset, Loader=yaml.SafeLoader)['test_map'] # Use SafeLoader for YAML
         
         for data in map_data:
             test = data.pop('test')
@@ -34,16 +34,18 @@ def test_build_default_params(mock_imread, mock_get):
             latitude = data.pop('latitude')
             longitude = data.pop('longitude')
             params = data.pop('params')
+
+            # Testing different input cases for the Map class
             if (test == 'default'):
                 actual_map = Map(latitude,longitude)
             elif (test == 'satellite_false'):
-                actual_map = Map(latitude,longitude,satellite = False)
+                actual_map = Map(latitude,longitude,satellite=False)
             elif (test == 'zoom'):
-                actual_map = Map(latitude,longitude,zoom = 30)
+                actual_map = Map(latitude,longitude,zoom=30)
             elif (test == 'size'):
-                actual_map = Map(latitude,longitude,size = (300,300))
+                actual_map = Map(latitude,longitude,size=(300,300))
             elif (test == 'sensor_true'): 
-                actual_map = Map(latitude,longitude,sensor = True)
+                actual_map = Map(latitude,longitude,sensor=True)
             
             mock_get.assert_called_with(url,params=params)
 
