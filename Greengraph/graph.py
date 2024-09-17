@@ -8,10 +8,13 @@ import geopy
 from map import Map
 
 class Greengraph(object):
-	def __init__(self, start, end):
+	def __init__(self, start: str, end: str):
 	    """
-	    Instantiate graph object with arguments 'start' and 'end'
-	    """
+    	Instantiate a Greengraph object with the specified start and end locations.
+		Args:
+        	start (str): The starting location for the analysis.
+        	end (str): The ending location for the analysis.
+		"""
 	    self.start = start
 	    self.end = end
 	    self.geocoder = geopy.geocoders.GoogleV3(domain = "maps.google.co.uk")
