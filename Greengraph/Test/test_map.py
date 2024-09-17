@@ -91,3 +91,6 @@ class TestMap(unittest.TestCase):
             mock_green.return_value = input_values # Mocking the green pixel data
             actual_return = my_map.count_green() # Count green pixels
             self.assertEqual(actual_return, expected_return)
+
+if __name__ == '__main__':
+    unittest.main()
