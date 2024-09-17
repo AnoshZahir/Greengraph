@@ -6,13 +6,15 @@ It tests the argument parser, the green plotting functionality, and the overall 
 from ..command import parser, green_plotter, process
 
 from nose.tools import assert_equal, assert_true
-
 from mock import patch
 
 def test_command_line_arguments():
-    '''
-    Test that argument parser correctly assigns the arguments passed to it.
-    '''
+    """
+    Test that the argument parser correctly assigns the arguments passed to it.
+
+    This test ensures that the parser processes and assigns the correct values 
+    to the first_location, second_location, steps, and output arguments.
+    """
     arguments = parser.parse_args(['--from','London','--to','Cambridge','--steps', 4,'--out','my_file'])
     assert_equal( arguments.first_location, 'London')
     assert_equal( arguments.second_location, 'Cambridge')
