@@ -44,7 +44,7 @@ class Map(object):
               center = ",".join(map(str, (lat, long))),
               style = "feature:all|element:labels|visibility:off"
               )
-    if satellite:
+        if satellite:
             params["maptype"] = "satellite"
         
         self.image = requests.get(base, params = params).content #response.get returns a 'Response' object.
@@ -52,8 +52,13 @@ class Map(object):
     
     def green(self, threshold):
         """
-        Take the array to which 'self.pixels' points to.  Use the 'threshold' and return an array of True/False values depending on 
-        whether each pixel is green or not. 
+        Determine which pixels are green based on the threshold value.
+
+        Args:
+            threshold (float): Threshold to determine greenness of a pixel.
+
+        Returns:
+            np.ndarray: A 2D array of boolean values indicating whether each pixel is green.
         """
     greener_than_red = self.pixels[:,:,1] > threshold*self.pixels[:,:,0]
     greener_than_blue = self.pixels[:,:,1] > threshold*self.pixels[:,:,2]
