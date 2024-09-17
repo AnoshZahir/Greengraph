@@ -73,7 +73,7 @@ class TestMap(unittest.TestCase):
             self.assertEqual(expected_return, actual_return)
 
     @patch.object(Map, 'green')
-    def test_count_green(mock_green):
+    def test_count_green(self, mock_green):
         """
         Test that the 'count_green' method accurately sums the True/False values 
         representing green pixels.
@@ -90,4 +90,4 @@ class TestMap(unittest.TestCase):
             
             mock_green.return_value = input_values # Mocking the green pixel data
             actual_return = my_map.count_green() # Count green pixels
-            assert_equal(actual_return, expected_return)
+            self.assertEqual(actual_return, expected_return)
