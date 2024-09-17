@@ -11,6 +11,7 @@ setup(
     packages = find_packages(exclude = ['*test']),
     scripts = ['scripts/graph'],
     install_requires = ['argparse', 'geopy', 'matplotlib', 'requests', 'numpy', 'mock' ]
+    python_requires='>=3.5'
 )
 
  
