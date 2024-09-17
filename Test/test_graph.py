@@ -14,17 +14,40 @@ from yaml.constructor import ConstructorError
 
 # Adding constructor for tuples in YAML
 def tuple_constructor(loader, node):
+    """
+    Custom constructor for YAML to handle tuples.
+    
+    Args:
+        loader: The YAML loader instance that parses the document.
+        node: The current YAML node being processed, expected to be a sequence node.
+    
+    Returns:
+        tuple: A Python tuple created from the YAML sequence node.
+    """
     return tuple(loader.construct_sequence(node))
 
 yaml.SafeLoader.add_constructor('tag:yaml.org,2002:python/tuple', tuple_constructor)
 
 class TestGreengraph(unittest.TestCase):
+    """
+    Unit tests for the Greengraph class, which handles geolocation, location sequence generation, 
+    and green space analysis.
+
+    This class includes the following tests:
+    - Test that the Greengraph object is instantiated correctly.
+    - Test that the geolocate method returns the correct latitude and longitude for a location.
+    - Test that the location_sequence method generates a correct sequence of coordinates.
+    - Test that the green_between method calculates the number of green pixels between two locations.
+    """
     
     @patch('geopy.geocoders.GoogleV3')
     def test_Greengraph(self, mock_geocoder):
-        '''
-        Test to ensure Greengraph instantiates correctly.
-        '''
+        """
+        Test Greengraph instantiation.
+
+        This test verifies that the Greengraph object is instantiated with the correct start and 
+        end locations. It ensures that the start and end attributes are assigned properly.
+        """
         actual = Greengraph('London', 'Cambridge')
         self.assertEqual(actual.start, 'London')
         self.assertEqual(actual.end, 'Cambridge')
@@ -32,10 +55,13 @@ class TestGreengraph(unittest.TestCase):
     @patch('geopy.geocoders.GoogleV3')
     @patch.object(Greengraph, 'geolocate')
     def test_geolocate(self, mock_geolocate, mock_geocoder):
-        '''
-        Test that geolocate method returns the output of geopy.geocoders.GoogleV3.geocode.
-        Since we are not testing the geocode method, it is mocked. The mocked values are taken from the test_geolocate subsection of graph_data.yaml.
-        '''
+        """
+        Test the geolocate method.
+
+        This test ensures that the geolocate method returns the correct latitude and longitude 
+        when given a location. The geocode method from geopy is mocked to avoid calling the 
+        real API, and test data is used from the YAML file.
+        """
         mygraph = Greengraph(0.0, 0.0)
 
         with open(os.path.join(os.path.dirname(__file__), 'data', 'graph_data.yaml')) as dataset:
@@ -56,8 +82,11 @@ class TestGreengraph(unittest.TestCase):
     @patch('geopy.geocoders.GoogleV3')
     def test_location_sequence(self, mock_geocoder):
         """
-        Test that location_sequence method returns the correct values based on 'start', 'end' and 'steps' arguments.
-        Data is taken from test_location_sequence subsection of graph_data.yaml.
+        Test the location_sequence method.
+
+        This test checks that the location_sequence method returns a sequence of evenly spaced 
+        latitude and longitude pairs between the start and end locations. The test uses mock data 
+        from the YAML file to verify correctness.
         """
         mygraph = Greengraph('London', 'Cambridge', mock_geocoder)
 
@@ -81,10 +110,12 @@ class TestGreengraph(unittest.TestCase):
     @patch.object(Map, 'count_green')
     def test_green_between(self, mock_count_green, mock_location_sequence, mock_GoogleV3, mock_geocode):
         """
-        Test that green_between returns a list of green pixels for each step between two locations.
-        mock_count_green to account for dependency on count_green method from map class.
-        mock_location_sequence to account for dependency on location_sequence method.
-        Data for both mocks are taken from test_green_between subsection of graph_data.yaml.
+        Test the green_between method.
+
+        This test ensures that the green_between method correctly calculates the number of 
+        green pixels for each location along the path between two locations. The location_sequence 
+        and count_green methods are mocked to simulate intermediate steps. Test data is loaded 
+        from the YAML file to verify the expected results.
         """
         
         # Mock the geocode method to return fixed coordinates (latitude, longitude)
