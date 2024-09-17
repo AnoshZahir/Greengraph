@@ -19,9 +19,10 @@ import numpy as np
 from io import StringIO
 from matplotlib import image as img
 import requests
+from typing import Tuple
 
 class Map(object):
-    def __init__(self, lat, long, satellite = True, zoom = 10, size = (400, 400), sensor = False):
+    def __init__(self, lat: float, long: float, satellite: bool = True, zoom: int = 10, size: Tuple[int, int] = (400, 400), sensor: bool = False):
         """
         Initialize a Map object with the provided latitude, longitude, and other optional parameters.
         
