@@ -23,7 +23,14 @@ def test_command_line_arguments():
 
 @mock.patch('__main__'.Greengraph)
 def test_green_plotter(mock_Greengraph)
-    #update with code.
+    """
+    Test the green_plotter function by mocking the Greengraph object, the plot function, and the savefig function.
+    
+    This test ensures that:
+    - The Greengraph instance is created with the correct arguments.
+    - The correct number of green pixels between two locations is plotted.
+    - The plot is saved to the correct output file.
+    """
     
 @patch('command.parser.parse_args')
 @patch('command.green_plotter')
