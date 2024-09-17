@@ -1,3 +1,8 @@
+""""
+This module contains the Greengraph class, which includes methods for geolocation,
+generating location sequences, and analyzing green space between two specified locations.
+"""
+
 import numpy as np
 import geopy
 from map import Map
