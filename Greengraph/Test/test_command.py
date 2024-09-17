@@ -61,3 +61,6 @@ class TestCommand(unittest.TestCase):
         process()
         self.assertTrue(mock_parser.called)
         self.assertTrue(mock_green_plotter.called)
+
+if __name__ == '__main__':
+    unittest.main()
