@@ -45,7 +45,10 @@ def green_plotter(arguments):
     plt.savefig(f'{arguments.output}.png')
     plt.show()
 
-def process():
+def process() -> None:
+    """
+    Parses the command-line arguments and invokes the green_plotter function.
+    """
     arguments = parser.parse_args()
     green_plotter(arguments)
     
