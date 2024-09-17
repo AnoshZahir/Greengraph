@@ -60,9 +60,9 @@ class Map(object):
         Returns:
             np.ndarray: A 2D array of boolean values indicating whether each pixel is green.
         """
-    greener_than_red = self.pixels[:,:,1] > threshold*self.pixels[:,:,0]
-    greener_than_blue = self.pixels[:,:,1] > threshold*self.pixels[:,:,2]
-    green = np.logical_and(greener_than_red, greener_than_blue)
+        greener_than_red = self.pixels[:, :, 1] > threshold * self.pixels[:, :, 0]
+        greener_than_blue = self.pixels[:, :, 1] > threshold * self.pixels[:, :, 2]
+        green = np.logical_and(greener_than_red, greener_than_blue)
         return green # 400x400 array of true/false values. 
     
     def count_green(self, threshold = 1.1):
